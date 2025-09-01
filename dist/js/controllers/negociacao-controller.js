@@ -1,17 +1,14 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes;
+        this.negociacoesView = new NegociacoesView('#negociacoesView');
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor");
-    }
-    adiciona() {
-        const negociacao = this.criaNegociacao();
-        this.negociacoes.adiciona(negociacao);
-        console.log(this.negociacoes.lista());
-        this.limparFormulario();
+        this.negociacoesView.update(this.negociacoes); // renderiza e atualiza o estado do DOM
     }
     criaNegociacao() {
         const exp = /-/g; // A string passada pelo construtor deve ter o ano, mês e dia separados por vírgula.
@@ -25,6 +22,13 @@ export class NegociacaoController {
         this.inputData.value = "";
         this.inputValor.value = "";
         this.inputQuantidade.value = "";
-        this.inputData.focus();
+        this.inputData.focus(); // esse comando volta o foco para o primeiro campo de formulário
+    }
+    adiciona() {
+        const negociacao = this.criaNegociacao(); //chama a função criaNegociacao()
+        this.negociacoes.adiciona(negociacao);
+        console.log(this.negociacoes.lista()); // mostra a lista na tela
+        this.limparFormulario();
+        this.negociacoesView.update(this.negociacoes);
     }
 }
