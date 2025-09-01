@@ -5,7 +5,6 @@ export class Negociacoes {
 
   adiciona(negociacao: Negociacao): void {
     this.negociacoes.push(negociacao);
-    negociacao.data.setDate(12)
   }
 
   lista(): Array<Negociacao> {
