@@ -1,8 +1,8 @@
 export class Negociacao {
   constructor(
     private readonly _data: Date,
-    private readonly quantidade: number,
-    private readonly valor: number
+    private readonly _quantidade: number,
+    private readonly _valor: number
   ) {}
    
   //getter do volume
@@ -14,5 +14,13 @@ export class Negociacao {
   get data(): Date {
     const data = new Date(this._data)
     return data
+  }  
+  
+  get quantidade(): number {
+    return this._quantidade
+  }  
+  
+  get valor(): number {
+    return this._valor
   }
 }
