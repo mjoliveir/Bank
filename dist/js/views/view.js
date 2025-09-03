@@ -2,7 +2,9 @@ export class View {
     constructor(seletor) {
         this.elemento = document.querySelector(seletor);
     }
-    template(model) {
-        throw Error('a classe filha deve implementar seu proprio template');
+    update(model) {
+        const template = this.template(model);
+        console.log(template);
+        this.elemento.innerHTML = this.template(model);
     }
 }
